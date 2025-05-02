@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Medico en tu Casa</string>
+    <string name="app_logo_desc">Logo de Médico en tu Casa</string>
+    <string name="spo2_label">SpO₂: %1$d%%</string>
+    <string name="temp_label">Temp: %1$.1f°C</string>
+    <string name="default_value">--</string>
+</resources>
