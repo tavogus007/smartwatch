@@ -1,7 +1,17 @@
 <resources>
-    <string name="app_name">Medico en tu Casa</string>
+    <string name="app_name">Médico en tu CASA</string>
+    <string name="app_subtitle">Monitoreo de Salud</string>
     <string name="app_logo_desc">Logo de Médico en tu Casa</string>
     <string name="spo2_label">SpO₂: %1$d%%</string>
     <string name="temp_label">Temp: %1$.1f°C</string>
+    <string name="heart_rate_label">Frec. Cardíaca: %1$d lpm</string>
+    <string name="bp_systolic_label">Presión Sistólica: %1$d mmHg</string>
+    <string name="bp_diastolic_label">Presión Diastólica: %1$d mmHg</string>
+    <string name="steps_label">Pasos: %1$d</string>
+    <string name="calories_label">Calorías: %1$d kcal</string>
+    <string name="sleep_label">Sueño: %1$.1f hrs</string>
+    <string name="stress_label">Estrés: %1$s</string>
+    <string name="activity_label">Actividad: %1$s</string>
     <string name="default_value">--</string>
+    <string name="health_monitor_content_desc">Monitor de salud con métricas biométricas</string>
 </resources>

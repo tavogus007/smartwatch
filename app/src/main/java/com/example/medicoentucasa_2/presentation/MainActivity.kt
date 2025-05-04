@@ -1,53 +1,74 @@
-package com.example.medicoentucasa_2.presentation // Asegúrate de que coincida con tu package name real
+package com.example.medicoentucasa_2.presentation
 
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import android.widget.TextView
-import com.example.medicoentucasa_2.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.medicoentucasa_2.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var tvBloodO2: TextView
-    private lateinit var tvBodyTemp: TextView
+
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var adapter: HealthMetricsAdapter
     private val handler = Handler(Looper.getMainLooper())
     private val updateInterval = 2000L // 2 segundos
-    private var isUpdating = false // Bandera para controlar las actualizaciones
-
-    private val updateRunnable = object : Runnable {
-        override fun run() {
-            if (!isUpdating) return // Si la actividad está en pausa/destruida, no actualices
-
-            // Actualiza las vistas si están inicializadas
-            if (::tvBloodO2.isInitialized && ::tvBodyTemp.isInitialized) {
-                tvBloodO2.text = getString(R.string.spo2_label, getBloodO2())
-                tvBodyTemp.text = getString(R.string.temp_label, getBodyTemp())
-            }
-
-            // Programa la próxima actualización solo si la actividad está activa
-            if (isUpdating) {
-                handler.postDelayed(this, updateInterval)
-            }
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        tvBloodO2 = findViewById(R.id.tvBloodO2)
-        tvBodyTemp = findViewById(R.id.tvBodyTemp)
-        isUpdating = true
-        handler.post(updateRunnable) // Inicia las actualizaciones
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setupRecyclerView()
+        startDataUpdates()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        isUpdating = false // Detiene las actualizaciones
-        handler.removeCallbacks(updateRunnable)
+    private fun setupRecyclerView() {
+        adapter = HealthMetricsAdapter()
+        binding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity).apply {
+                // Configuración para centrado de items
+                isItemPrefetchEnabled = true
+            }
+            adapter = this@MainActivity.adapter
+
+            // Configurar comportamiento de desplazamiento programáticamente
+            isEdgeItemsCenteringEnabled = true
+            setHasFixedSize(true)
+        }
     }
 
-    // Simulador de datos (sin cambios)
+    private fun startDataUpdates() {
+        handler.post(object : Runnable {
+            override fun run() {
+                val metrics = listOf(
+                    HealthMetric("Frecuencia Cardíaca", "${getHeartRate()} lpm"),
+                    HealthMetric("Presión Sistólica", "${getBloodPressureSistolic()} mmHg"),
+                    HealthMetric("Presión Diastólica", "${getBloodPressureDiastolic()} mmHg"),
+                    HealthMetric("SpO₂", "${getBloodO2()}%"),
+                    HealthMetric("Temperatura", "%.1f°C".format(getBodyTemp())),
+                    HealthMetric("Pasos", getSteps().toString()),
+                    HealthMetric("Calorías Quemadas", "${getCaloriesBurned()} kcal"),
+                    HealthMetric("Horas de Sueño", "%.1f hrs".format(getSleepHours())),
+                    HealthMetric("Nivel de Estrés", getStressLevel()),
+                    HealthMetric("Actividad Física", getPhysicalActivity())
+                )
+                adapter.updateMetrics(metrics)
+                handler.postDelayed(this, updateInterval)
+            }
+        })
+    }
+
+    // Métodos de simulación de datos actualizados para coincidir con tu tabla
+    private fun getHeartRate(): Int = (60..100).random()
+    private fun getBloodPressureSistolic(): Int = (110..140).random()
+    private fun getBloodPressureDiastolic(): Int = (70..90).random()
     private fun getBloodO2(): Int = (90..100).random()
     private fun getBodyTemp(): Double = 36.0 + (0..20).random() / 10.0
+    private fun getSteps(): Int = (0..10000).random()
+    private fun getCaloriesBurned(): Int = (100..800).random()
+    private fun getSleepHours(): Double = "%.1f".format(4.0 + Math.random() * 5.0).toDouble()
+    private fun getStressLevel(): String = listOf("Bajo", "Moderado", "Alto").random()
+    private fun getPhysicalActivity(): String = listOf("Sedentario", "Ligero", "Moderado", "Intenso", "Muy intenso").random()
 }

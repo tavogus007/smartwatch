@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -14,7 +13,6 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
     }
 
     buildTypes {
@@ -34,35 +32,34 @@ android {
         jvmTarget = "11"
     }
     buildFeatures {
-        compose = true
+        viewBinding = true
     }
 }
 
 dependencies {
-    // Dependencias principales de Wear OS (CRÍTICAS para BoxInsetLayout)
-    // Dependencias principales de Wear OS (actualizadas a 2023)
-    implementation("androidx.wear:wear:1.3.0")
-    implementation("androidx.wear.compose:compose-foundation:1.2.1") // Alternativa moderna
     // Dependencias básicas
-    implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.core:core-ktx:1.12.0")
-    // Si usas Compose
+    implementation("androidx.appcompat:appcompat:1.6.1")
+
+    // Dependencias de Wear OS
+    implementation("androidx.wear:wear:1.3.0")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+
+    // ViewBinding y Activity
+    implementation("androidx.activity:activity-ktx:1.8.0")
+
+    // Play Services
+    implementation("com.google.android.gms:play-services-wearable:18.1.0")
+
+    // Dependencias de Compose (solo si las estás usando)
     implementation(platform("androidx.compose:compose-bom:2023.08.00"))
     implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.material:material")
-    implementation(libs.play.services.wearable)
-    implementation(platform(libs.compose.bom))
-    implementation(libs.ui)
-    implementation(libs.ui.graphics)
-    implementation(libs.ui.tooling.preview)
-    implementation(libs.compose.material)
-    implementation(libs.compose.foundation)
-    implementation(libs.wear.tooling.preview)
-    implementation(libs.activity.compose)
-    implementation(libs.core.splashscreen)
-    androidTestImplementation(platform(libs.compose.bom))
-    androidTestImplementation(libs.ui.test.junit4)
-    debugImplementation(libs.ui.tooling)
-    debugImplementation(libs.ui.test.manifest)
-    implementation(libs.wear)          // Nueva referencia
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.compose.material3:material3")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    // Wear Compose (solo si lo necesitas)
+    implementation("androidx.wear.compose:compose-foundation:1.2.1")
+    implementation("androidx.wear.compose:compose-navigation:1.2.1")
 }

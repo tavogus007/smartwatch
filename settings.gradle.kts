@@ -16,6 +16,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url = uri("https://androidx.dev/storage/compose-compiler/repository/") }
+        maven { url = uri("https://maven.google.com") }
     }
 }
 

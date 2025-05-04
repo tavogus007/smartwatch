@@ -7,35 +7,13 @@
     android:background="@android:color/black"
     app:boxedEdges="all">
 
-    <LinearLayout
+    <androidx.wear.widget.WearableRecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="16dp"
-        android:background="@android:color/black">
-
-        <!-- SpO2 -->
-        <TextView
-            android:id="@+id/tvBloodO2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:textColor="@color/textColorPrimary"
-            android:text="@string/default_value"/>
-
-
-        <!-- Temperatura -->
-        <TextView
-            android:id="@+id/tvBodyTemp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:textColor="@color/textColorPrimary"
-            android:layout_marginTop="10dp"
-            android:text="@string/default_value"/>
-
-
-    </LinearLayout>
+        android:contentDescription="@string/app_name"
+        app:layout_boxedEdges="all"
+        app:circularScrollingGestureEnabled="true"
+        app:scrollDegreesPerScreen="90"/>
 
 </androidx.wear.widget.BoxInsetLayout>
