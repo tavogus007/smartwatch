@@ -11,9 +11,8 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="@string/app_name"
-        app:layout_boxedEdges="all"
-        app:circularScrollingGestureEnabled="true"
-        app:scrollDegreesPerScreen="90"/>
+        android:scrollbars="vertical"
+        android:scrollbarThumbVertical="@drawable/custom_scrollbar"
+        app:scrollDegreesPerScreen="120"/>
 
 </androidx.wear.widget.BoxInsetLayout>

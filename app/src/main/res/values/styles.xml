@@ -2,15 +2,14 @@
     <!-- Tema base para Wear OS -->
     <style name="AppTheme" parent="Theme.AppCompat">
         <!-- Añade esto para el ActionBar -->
-        <item name="actionBarStyle">@style/MyActionBar</item>
         <item name="windowActionBar">true</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionBarStyle">@style/CenteredActionBar</item>
         <item name="android:windowBackground">@color/background</item>
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
         <item name="android:textColorSecondary">@color/textColorSecondary</item>
-        <!-- Estilo para el título -->
         <item name="android:textAppearanceLarge">@style/TextAppearance.App.Title</item>
     </style>
 
@@ -19,6 +18,8 @@
         <item name="android:textAlignment">center</item>
         <item name="titleTextStyle">@style/TitleTextStyle</item>
         <item name="background">@color/colorPrimary</item>
+        <item name="displayOptions">showTitle</item>
+        <item name="android:layout_gravity">center</item>
     </style>
 
     <style name="TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
@@ -28,9 +29,11 @@
     </style>
 
     <style name="TextAppearance.App.Title" parent="TextAppearance.AppCompat.Large">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
         <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:letterSpacing">0.05</item>
     </style>
@@ -40,5 +43,22 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/textColorPrimary</item>
         <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <!-- Añadir esto en resources -->
+    <style name="WearOSScrollStyle" parent="Theme.AppCompat">
+        <item name="android:scrollbarThumbVertical">@drawable/wearable_scrollbar</item>
+        <item name="android:scrollbarSize">4dp</item>
+        <item name="android:scrollbarStyle">insideOverlay</item>
+    </style>
+
+    <style name="CenteredActionBar" parent="Widget.AppCompat.ActionBar.Solid">
+        <item name="titleTextStyle">@style/CenteredTitleText</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="CenteredTitleText" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textAlignment">center</item>
+        <item name="android:gravity">center</item>
     </style>
 </resources>

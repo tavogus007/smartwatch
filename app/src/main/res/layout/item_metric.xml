@@ -5,8 +5,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:padding="16dp"
-    android:minHeight="80dp">
+    android:padding="8dp"
+    android:minHeight="60dp">
 
     <TextView
         android:id="@+id/tvMetricTitle"
@@ -20,7 +20,7 @@
         android:id="@+id/tvMetricValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textColor="@color/textColorPrimary"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="2dp"/>
 </LinearLayout>

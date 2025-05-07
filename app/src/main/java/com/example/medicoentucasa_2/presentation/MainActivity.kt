@@ -3,8 +3,10 @@ package com.example.medicoentucasa_2.presentation
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.medicoentucasa_2.R
 import com.example.medicoentucasa_2.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -16,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        supportActionBar?.title = getString(R.string.app_header_title)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -27,15 +29,11 @@ class MainActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         adapter = HealthMetricsAdapter()
         binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity).apply {
-                // Configuración para centrado de items
-                isItemPrefetchEnabled = true
-            }
+            layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = this@MainActivity.adapter
-
-            // Configurar comportamiento de desplazamiento programáticamente
-            isEdgeItemsCenteringEnabled = true
-            setHasFixedSize(true)
+            setEdgeItemsCenteringEnabled(true)
+            isVerticalScrollBarEnabled = true
+            overScrollMode = View.OVER_SCROLL_NEVER
         }
     }
 
