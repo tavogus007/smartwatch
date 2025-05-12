@@ -1,55 +1,44 @@
 <resources>
     <!-- Tema base para Wear OS -->
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        <!-- Añade esto para el ActionBar -->
-
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <!-- Configuración del ActionBar -->
+        <item name="windowActionBar">true</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="actionBarStyle">@style/CenteredActionBar</item>
+        <item name="actionBarStyle">@style/GradientActionBar</item> <!-- Estilo personalizado -->
         <item name="android:windowBackground">@color/background</item>
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
         <item name="android:textColorSecondary">@color/textColorSecondary</item>
-        <item name="android:textAppearanceLarge">@style/TextAppearance.App.Title</item>
     </style>
 
-    <style name="TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textSize">16sp</item>
+    <!-- Estilo para el ActionBar con degradado -->
+    <style name="GradientActionBar" parent="Widget.AppCompat.ActionBar">
+        <item name="background">@drawable/header_gradient</item> <!-- Fondo degradado -->
+        <item name="titleTextStyle">@style/CenteredTitleText</item>
+        <item name="android:gravity">center</item>
+        <item name="displayOptions">showTitle</item>
+    </style>
+
+    <!-- Estilo para el título centrado -->
+    <style name="CenteredTitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="TextAppearance.App.Title" parent="TextAppearance.AppCompat.Large">
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/colorPrimary</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">center</item>
         <item name="android:gravity">center</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:fontFamily">sans-serif-condensed</item>
-        <item name="android:letterSpacing">0.05</item>
     </style>
 
-    <!-- Estilo para las métricas -->
+    <!-- Conserva los demás estilos (MetricText, WearOSScrollStyle, etc.) -->
     <style name="MetricText" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/textColorPrimary</item>
         <item name="android:layout_marginBottom">8dp</item>
     </style>
 
-    <!-- Añadir esto en resources -->
     <style name="WearOSScrollStyle" parent="Theme.AppCompat">
-        <item name="android:scrollbarThumbVertical">@drawable/wearable_scrollbar</item>
+        <item name="android:scrollbarThumbVertical">@drawable/custom_scrollbar</item>
         <item name="android:scrollbarSize">4dp</item>
         <item name="android:scrollbarStyle">insideOverlay</item>
-    </style>
-
-    <style name="CenteredActionBar" parent="Widget.AppCompat.ActionBar.Solid">
-        <item name="titleTextStyle">@style/CenteredTitleText</item>
-        <item name="android:gravity">center</item>
-    </style>
-
-    <style name="CenteredTitleText" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textAlignment">center</item>
-        <item name="android:gravity">center</item>
     </style>
 </resources>

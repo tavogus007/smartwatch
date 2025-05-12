@@ -6,11 +6,10 @@ import android.os.Looper
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-
+import com.example.medicoentucasa_2.R
 import com.example.medicoentucasa_2.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: HealthMetricsAdapter
     private val handler = Handler(Looper.getMainLooper())
@@ -18,9 +17,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Configura el ActionBar con estilo personalizado
+        supportActionBar?.apply {
+            title = getString(R.string.app_header_title)
+            setDisplayShowTitleEnabled(true)
+        }
 
         setupRecyclerView()
         startDataUpdates()
@@ -58,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    // Métodos de simulación de datos actualizados para coincidir con tu tabla
+    // Métodos de simulación de datos
     private fun getHeartRate(): Int = (60..100).random()
     private fun getBloodPressureSistolic(): Int = (110..140).random()
     private fun getBloodPressureDiastolic(): Int = (70..90).random()
