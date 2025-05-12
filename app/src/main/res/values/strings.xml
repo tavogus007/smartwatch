@@ -14,4 +14,8 @@
     <string name="activity_label">Actividad: %1$s</string>
     <string name="default_value">--</string>
     <string name="health_monitor_content_desc">Monitor de salud con métricas biométricas</string>
+    <string name="welcome_title">Bienvenido a Health Monitor</string>
+    <string name="welcome_description">Esta aplicación te permite monitorear tus signos vitales en tiempo real... [texto largo aquí]</string>
+    <string name="continue_button">Continuar</string>
+    <string name="logo_desc">Logo de la aplicación</string>
 </resources>

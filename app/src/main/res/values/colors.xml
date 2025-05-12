@@ -11,4 +11,9 @@
 
     <!-- Fondo -->
     <color name="background">#FFD8EEF1</color>
+
+    <!-- Colores específicos para welcome -->
+    <color name="welcome_bg">#FF2D3748</color> <!-- Ejemplo: azul oscuro -->
+    <color name="welcome_title">#2B98C8</color> <!-- Ejemplo: amarillo -->
+    <color name="welcome_text">#FFFFFFFF</color> <!-- Blanco -->
 </resources>

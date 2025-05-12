@@ -1,4 +1,17 @@
 <resources>
+
+    <!-- Estilo específico para WelcomeActivity -->
+    <style name="WelcomeTheme" parent="AppTheme">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="WelcomeButton" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:background">@drawable/rounded_button</item>
+    </style>
+
     <!-- Tema base para Wear OS -->
     <style name="AppTheme" parent="Theme.AppCompat">
         <!-- Configuración del ActionBar -->
