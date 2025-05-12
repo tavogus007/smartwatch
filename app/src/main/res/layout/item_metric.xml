@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:textColor="@color/colorPrimary"
+        android:textColor="#A32DB8"
         android:textStyle="bold"/>
 
     <TextView
@@ -21,6 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:textColor="@color/textColorPrimary"
-        android:layout_marginTop="2dp"/>
+        android:textColor="#1B7FD1"
+        android:layout_marginTop="0.5dp"
+        android:textStyle="bold"/>
 </LinearLayout>

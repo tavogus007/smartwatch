@@ -4,8 +4,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
+    android:background="@color/background"
     app:boxedEdges="all">
+
+    <TextView
+        android:id="@+id/header_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/header_gradient"
+        android:padding="12dp"
+        android:text="@string/app_header_title"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:textStyle="bold" />
 
     <androidx.wear.widget.WearableRecyclerView
         android:id="@+id/recyclerView"
@@ -13,6 +25,7 @@
         android:layout_height="match_parent"
         android:scrollbars="vertical"
         android:scrollbarThumbVertical="@drawable/custom_scrollbar"
+        android:contentDescription="@string/health_monitor_content_desc"
         app:scrollDegreesPerScreen="120"/>
 
 </androidx.wear.widget.BoxInsetLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MÉDICO EN TU CASA</string>
+    <string name="app_name"></string>
     <string name="app_header_title">Monitor de Salud</string>
     <string name="app_logo_desc">Logo de Médico en tu Casa</string>
     <string name="spo2_label">SpO₂: %1$d%%</string>

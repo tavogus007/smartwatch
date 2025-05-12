@@ -1,8 +1,8 @@
 <resources>
     <!-- Tema base para Wear OS -->
-    <style name="AppTheme" parent="Theme.AppCompat">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Añade esto para el ActionBar -->
-        <item name="windowActionBar">true</item>
+
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -11,15 +11,6 @@
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
         <item name="android:textColorSecondary">@color/textColorSecondary</item>
         <item name="android:textAppearanceLarge">@style/TextAppearance.App.Title</item>
-    </style>
-
-    <style name="MyActionBar" parent="Widget.AppCompat.ActionBar">
-        <item name="android:gravity">center</item>
-        <item name="android:textAlignment">center</item>
-        <item name="titleTextStyle">@style/TitleTextStyle</item>
-        <item name="background">@color/colorPrimary</item>
-        <item name="displayOptions">showTitle</item>
-        <item name="android:layout_gravity">center</item>
     </style>
 
     <style name="TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">

@@ -6,7 +6,7 @@ import android.os.Looper
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.medicoentucasa_2.R
+
 import com.example.medicoentucasa_2.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportActionBar?.title = getString(R.string.app_header_title)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
