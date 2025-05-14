@@ -4,16 +4,25 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.medicoentucasa_2.R
 import com.example.medicoentucasa_2.databinding.ActivityMainBinding
+import com.example.medicoentucasa_2.presentation.remote.ApiService
+import com.example.medicoentucasa_2.presentation.remote.RetrofitClient
+import com.example.medicoentucasa_2.presentation.remote.SmartwatchData
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: HealthMetricsAdapter
     private val handler = Handler(Looper.getMainLooper())
     private val updateInterval = 2000L // 2 segundos
+    private var metricsList: List<HealthMetric> = emptyList() // NUEVO
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         setupRecyclerView()
+        setupSendButton() // NUEVO
         startDataUpdates()
     }
 
@@ -39,6 +49,40 @@ class MainActivity : AppCompatActivity() {
             isVerticalScrollBarEnabled = true
             overScrollMode = View.OVER_SCROLL_NEVER
         }
+    }
+
+    private fun setupSendButton() {
+        binding.btnSendData.setOnClickListener {
+            if (metricsList.isNotEmpty()) {
+                val data = SmartwatchData(
+                    heartRate = getValue("Frecuencia Cardíaca"),
+                    systolicPressure = getValue("Presión Sistólica"),
+                    diastolicPressure = getValue("Presión Diastólica"),
+                    oxygenSaturation = getValue("SpO₂"),
+                    temperature = getValue("Temperatura"),
+                    steps = getValue("Pasos"),
+                    calories = getValue("Calorías Quemadas"),
+                    sleepHours = getValue("Horas de Sueño"),
+                    stress = getValue("Nivel de Estrés"),
+                    physicalActivity = getValue("Actividad Física")
+                )
+
+                val api = RetrofitClient.instance.create(ApiService::class.java)
+                api.sendMetrics(data).enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                        Toast.makeText(this@MainActivity, "Datos enviados con éxito", Toast.LENGTH_SHORT).show()
+                    }
+
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                        Toast.makeText(this@MainActivity, "Error al enviar datos", Toast.LENGTH_SHORT).show()
+                    }
+                })
+            }
+        }
+    }
+
+    private fun getValue(title: String): String {
+        return metricsList.find { it.title == title }?.value ?: ""
     }
 
     private fun startDataUpdates() {
@@ -56,6 +100,7 @@ class MainActivity : AppCompatActivity() {
                     HealthMetric("Nivel de Estrés", getStressLevel()),
                     HealthMetric("Actividad Física", getPhysicalActivity())
                 )
+                metricsList = metrics // NUEVO
                 adapter.updateMetrics(metrics)
                 handler.postDelayed(this, updateInterval)
             }

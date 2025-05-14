@@ -17,4 +17,14 @@
         android:contentDescription="@string/health_monitor_content_desc"
         app:scrollDegreesPerScreen="120"/>
 
+    <Button
+        android:id="@+id/btnSendData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enviar"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:textColor="@android:color/white"/>
+
 </androidx.wear.widget.BoxInsetLayout>

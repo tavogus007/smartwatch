@@ -65,4 +65,8 @@ dependencies {
     // Wear Compose (solo si lo necesitas)
     implementation("androidx.wear.compose:compose-foundation:1.2.1")
     implementation("androidx.wear.compose:compose-navigation:1.2.1")
+
+    // Retrofit y conversor Gson
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 }
