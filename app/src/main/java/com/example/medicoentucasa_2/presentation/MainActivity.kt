@@ -55,20 +55,19 @@ class MainActivity : AppCompatActivity() {
         binding.btnSendData.setOnClickListener {
             if (metricsList.isNotEmpty()) {
                 val data = SmartwatchData(
-                    heartRate = getValue("Frecuencia Cardíaca"),
-                    systolicPressure = getValue("Presión Sistólica"),
-                    diastolicPressure = getValue("Presión Diastólica"),
-                    oxygenSaturation = getValue("SpO₂"),
-                    temperature = getValue("Temperatura"),
-                    steps = getValue("Pasos"),
-                    calories = getValue("Calorías Quemadas"),
-                    sleepHours = getValue("Horas de Sueño"),
-                    stress = getValue("Nivel de Estrés"),
-                    physicalActivity = getValue("Actividad Física")
+                    smartFrecCardiaca = getCleanNumber("Frecuencia Cardíaca"), // 72
+                    smartPresSistolica = getCleanNumber("Presión Sistólica"), // 120
+                    smartPresDiasistolica = getCleanNumber("Presión Diastólica"),
+                    smartPresO2 = getCleanNumber("SpO₂"),
+                    smartTemperatura = getCleanDouble("Temperatura"),
+                    smartPasos = getCleanNumber("Pasos"),
+                    smartCaloQuem = getCleanNumber("Calorías Quemadas"),
+                    smartSleepHoras = getCleanDouble("Horas de Sueño"),
+                    smartNivelEstres = getCleanString("Nivel de Estrés"), // "Moderado"
+                    smartActividadFisica = getCleanString("Actividad Física")
                 )
 
-                val api = RetrofitClient.instance.create(ApiService::class.java)
-                api.sendMetrics(data).enqueue(object : Callback<Void> {
+                RetrofitClient.api.sendMetrics(data).enqueue(object : Callback<Void> {
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         Toast.makeText(this@MainActivity, "Datos enviados con éxito", Toast.LENGTH_SHORT).show()
                     }
@@ -81,8 +80,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getValue(title: String): String {
-        return metricsList.find { it.title == title }?.value ?: ""
+    // Nuevos métodos helper
+    private fun getCleanNumber(title: String): Int? {
+        val value = metricsList.find { it.title == title }?.value
+        return value?.replace(Regex("[^0-9]"), "")?.toIntOrNull()
+    }
+
+    private fun getCleanDouble(title: String): Double? {
+        val value = metricsList.find { it.title == title }?.value
+        return value?.replace(Regex("[^0-9.]"), "")?.toDoubleOrNull()
+    }
+
+    private fun getCleanString(title: String): String? {
+        return metricsList.find { it.title == title }?.value
+            ?.replace(Regex("[^a-zA-ZáéíóúÁÉÍÓÚ ]"), "")
     }
 
     private fun startDataUpdates() {

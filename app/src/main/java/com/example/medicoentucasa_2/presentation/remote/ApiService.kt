@@ -5,6 +5,6 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface ApiService {
-    @POST("smartwatch") // Cambia esto a tu endpoint real
+    @POST("smartwatch")
     fun sendMetrics(@Body data: SmartwatchData): Call<Void>
 }
