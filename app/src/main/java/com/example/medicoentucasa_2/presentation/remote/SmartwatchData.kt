@@ -11,5 +11,6 @@ data class SmartwatchData(
     val smartCaloQuem: Int?,
     val smartSleepHoras: Double?,
     val smartNivelEstres: String?,
-    val smartActividadFisica: String?
+    val smartActividadFisica: String?,
+    val smartId: Int?
 )

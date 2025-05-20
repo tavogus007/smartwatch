@@ -11,7 +11,9 @@
     <androidx.wear.widget.WearableRecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginBottom="50dp"
+        android:layout_gravity="top"
         android:scrollbars="vertical"
         android:scrollbarThumbVertical="@drawable/custom_scrollbar"
         android:contentDescription="@string/health_monitor_content_desc"

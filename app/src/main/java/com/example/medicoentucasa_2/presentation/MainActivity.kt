@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
     private val updateInterval = 2000L // 2 segundos
     private var metricsList: List<HealthMetric> = emptyList() // NUEVO
 
+    private val smartIdFijo = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -64,10 +66,11 @@ class MainActivity : AppCompatActivity() {
                     smartCaloQuem = getCleanNumber("Calorías Quemadas"),
                     smartSleepHoras = getCleanDouble("Horas de Sueño"),
                     smartNivelEstres = getCleanString("Nivel de Estrés"), // "Moderado"
-                    smartActividadFisica = getCleanString("Actividad Física")
+                    smartActividadFisica = getCleanString("Actividad Física"),
+                    smartId = smartIdFijo
                 )
 
-                RetrofitClient.api.sendMetrics(data).enqueue(object : Callback<Void> {
+                RetrofitClient.api.updateMetrics(smartIdFijo,data).enqueue(object : Callback<Void> {
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         Toast.makeText(this@MainActivity, "Datos enviados con éxito", Toast.LENGTH_SHORT).show()
                     }

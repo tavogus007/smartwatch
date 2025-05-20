@@ -2,9 +2,13 @@ package com.example.medicoentucasa_2.presentation.remote
 
 import retrofit2.Call
 import retrofit2.http.Body
-import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface ApiService {
-    @POST("smartwatch")
-    fun sendMetrics(@Body data: SmartwatchData): Call<Void>
+    @PUT("smartwatch/{smartId}")
+    fun updateMetrics(
+        @Path("smartId") smartId: Int,
+        @Body data: SmartwatchData
+    ): Call<Void>
 }
